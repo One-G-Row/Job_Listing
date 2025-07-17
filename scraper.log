@@ -1,0 +1,73 @@
+2025-07-10 16:25:09,775 - __main__ - INFO - Starting job scraping...
+2025-07-10 16:25:09,775 - __main__ - INFO - Starting to scrape upwork from https://www.upwork.com/freelance-jobs/website-development/
+2025-07-10 16:25:11,778 - WDM - INFO - ====== WebDriver manager ======
+2025-07-10 16:25:12,081 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:25:12,514 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:25:12,841 - WDM - INFO - Driver [/home/student/.wdm/drivers/chromedriver/linux64/132.0.6834.159/chromedriver-linux64/chromedriver] found in cache
+2025-07-10 16:25:24,900 - __main__ - WARNING - No selectors defined for upwork
+2025-07-10 16:25:25,016 - __main__ - WARNING - No jobs found from upwork
+2025-07-10 16:25:25,017 - __main__ - INFO - Starting to scrape freelancer from https://www.freelancer.com/jobs/
+2025-07-10 16:25:27,019 - WDM - INFO - ====== WebDriver manager ======
+2025-07-10 16:25:27,189 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:25:27,636 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:25:27,950 - WDM - INFO - Driver [/home/student/.wdm/drivers/chromedriver/linux64/132.0.6834.159/chromedriver-linux64/chromedriver] found in cache
+2025-07-10 16:25:43,857 - __main__ - WARNING - No jobs found from freelancer
+2025-07-10 16:25:43,857 - __main__ - INFO - Starting to scrape fiverr from https://www.fiverr.com/search/gigs?query=web+development
+2025-07-10 16:25:45,859 - WDM - INFO - ====== WebDriver manager ======
+2025-07-10 16:25:46,037 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:25:46,572 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:25:47,508 - WDM - INFO - Driver [/home/student/.wdm/drivers/chromedriver/linux64/132.0.6834.159/chromedriver-linux64/chromedriver] found in cache
+2025-07-10 16:26:04,664 - __main__ - WARNING - No selectors defined for fiverr
+2025-07-10 16:26:04,741 - __main__ - WARNING - No jobs found from fiverr
+2025-07-10 16:26:04,741 - __main__ - INFO - Starting to scrape wayup from https://www.wayup.com/s/entry-level-jobs/computer/
+2025-07-10 16:26:09,554 - __main__ - WARNING - No selectors defined for wayup
+2025-07-10 16:26:09,555 - __main__ - WARNING - No jobs found from wayup
+2025-07-10 16:26:09,555 - __main__ - INFO - Starting to scrape internshala from https://internshala.com/internships/web+development+internship
+2025-07-10 16:26:13,971 - __main__ - WARNING - No jobs found from internshala
+2025-07-10 16:26:13,972 - __main__ - INFO - Starting to scrape brightermonday from https://www.brightermonday.co.ke/jobs/web-development
+2025-07-10 16:26:17,932 - __main__ - WARNING - No selectors defined for brightermonday
+2025-07-10 16:26:17,933 - __main__ - WARNING - No jobs found from brightermonday
+2025-07-10 16:26:17,933 - __main__ - INFO - Job scraping completed!
+2025-07-10 16:26:50,717 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-10 16:26:50,718 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-10 16:26:50,720 - werkzeug - INFO -  * Restarting with stat
+2025-07-10 16:26:51,758 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 16:26:51,759 - werkzeug - INFO -  * Debugger PIN: 592-517-157
+2025-07-10 16:26:55,648 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 16:26:55] "GET / HTTP/1.1" 200 -
+2025-07-10 16:27:02,089 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 16:27:02] "GET / HTTP/1.1" 200 -
+2025-07-10 16:27:10,102 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 16:27:10] "GET /internships HTTP/1.1" 200 -
+2025-07-10 16:27:17,308 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 16:27:17] "GET / HTTP/1.1" 200 -
+2025-07-10 16:29:22,873 - __main__ - INFO - Starting job scraping...
+2025-07-10 16:29:22,874 - __main__ - INFO - Starting to scrape upwork from https://www.upwork.com/freelance-jobs/website-development/
+2025-07-10 16:29:24,875 - WDM - INFO - ====== WebDriver manager ======
+2025-07-10 16:29:25,028 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:29:25,396 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:29:25,734 - WDM - INFO - Driver [/home/student/.wdm/drivers/chromedriver/linux64/132.0.6834.159/chromedriver-linux64/chromedriver] found in cache
+2025-07-10 16:29:38,472 - __main__ - WARNING - No selectors defined for upwork
+2025-07-10 16:29:38,543 - __main__ - WARNING - No jobs found from upwork
+2025-07-10 16:29:38,543 - __main__ - INFO - Starting to scrape freelancer from https://www.freelancer.com/jobs/
+2025-07-10 16:29:40,545 - WDM - INFO - ====== WebDriver manager ======
+2025-07-10 16:29:40,887 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:29:46,551 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:29:46,945 - WDM - INFO - Driver [/home/student/.wdm/drivers/chromedriver/linux64/132.0.6834.159/chromedriver-linux64/chromedriver] found in cache
+2025-07-10 16:30:00,856 - __main__ - WARNING - No jobs found from freelancer
+2025-07-10 16:30:00,856 - __main__ - INFO - Starting to scrape fiverr from https://www.fiverr.com/search/gigs?query=web+development
+2025-07-10 16:30:02,858 - WDM - INFO - ====== WebDriver manager ======
+2025-07-10 16:30:03,013 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:30:03,757 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-10 16:30:04,147 - WDM - INFO - Driver [/home/student/.wdm/drivers/chromedriver/linux64/132.0.6834.159/chromedriver-linux64/chromedriver] found in cache
+2025-07-10 16:30:15,230 - __main__ - WARNING - No selectors defined for fiverr
+2025-07-10 16:30:15,397 - __main__ - WARNING - No jobs found from fiverr
+2025-07-10 16:30:15,397 - __main__ - INFO - Starting to scrape wayup from https://www.wayup.com/s/entry-level-jobs/computer/
+2025-07-10 16:30:19,479 - __main__ - WARNING - No selectors defined for wayup
+2025-07-10 16:30:19,479 - __main__ - WARNING - No jobs found from wayup
+2025-07-10 16:30:19,480 - __main__ - INFO - Starting to scrape internshala from https://internshala.com/internships/web+development+internship
+2025-07-10 16:30:23,123 - __main__ - WARNING - No jobs found from internshala
+2025-07-10 16:30:23,123 - __main__ - INFO - Starting to scrape brightermonday from https://www.brightermonday.co.ke/jobs/web-development
+2025-07-10 16:30:26,869 - __main__ - WARNING - No selectors defined for brightermonday
+2025-07-10 16:30:26,870 - __main__ - WARNING - No jobs found from brightermonday
+2025-07-10 16:30:26,870 - __main__ - INFO - Job scraping completed!
+2025-07-10 16:31:03,803 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2025 16:31:03] "GET / HTTP/1.1" 200 -
+2025-07-10 16:31:16,310 - werkzeug - INFO -  * Detected change in '/home/student/Job Listings Agent/job_scraper.py', reloading
+2025-07-10 16:31:16,575 - werkzeug - INFO -  * Restarting with stat
