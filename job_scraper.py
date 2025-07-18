@@ -1,5 +1,6 @@
 from sys import intern
 import requests
+import os
 from bs4 import BeautifulSoup
 import pandas as pd
 from selenium import webdriver
@@ -352,6 +353,42 @@ class JobScraper:
                 return category
                 
         return "Other"
+    
+    """ def fetch_jobs(self):
+        api_key = os.getenv('THEIRSTACK_API_KEY')
+
+        payload = {
+            "page": 0,
+            "limit": 25,
+            "job_country_code_or": [
+                "KE"
+            ],
+            "job_title_or": [
+                "web developer"
+            ],
+            "job_title_pattern_and": [
+                "(?i)web developer"
+            ],
+            "job_title_pattern_or": [
+                "(?i)web developer"
+            ],
+            "posted_at_max_age_days": 7
+        }
+
+        api_jobs = requests.post(f'https://api.theirstack.com/v1/jobs/search?token={api_key}', json=payload)
+
+        for api_job in api_jobs.json():
+            for data in api_job: 
+            self.data.append({
+                            'Job Title':api_job.job_title,
+                            'Job Description': api_job.description,
+                            'Job Source': api_job.company,
+                            #'Category': self.get_category(api_job.title, api_job.description),
+                            'Job URL': api_job.source_url,
+                        })
+        print(f'API_JOBS: {api_jobs.json()}')
+        return api_jobs.json() """
+
 
     def scrape_indeed(self, is_internship=True):
         """Scrape web development jobs or internships from Indeed"""
@@ -362,7 +399,7 @@ class JobScraper:
             soup = BeautifulSoup(response.text, 'html.parser')
             
             jobs = soup.find_all('div', class_='job_seen_beacon')
-            for job in jobs:
+            for job in jobs[0:31]:
                 title = self.clean_text(job.find('h2').text)
                 company = self.clean_text(job.find('span', class_='companyName').text)
                 description = self.clean_text(job.find('div', class_='job-snippet').text)
@@ -403,7 +440,7 @@ class JobScraper:
             time.sleep(5)
             
             jobs = driver.find_elements(By.CSS_SELECTOR, '.job-card-container')
-            for job in jobs:
+            for job in jobs[0:31]:
                 title = self.clean_text(job.find_element(By.CSS_SELECTOR, '.job-card-container__link').text)
                 company = self.clean_text(job.find_element(By.CSS_SELECTOR, 'ltr').get_attribute('dir').text)
                 #description = self.clean_text(job.find_element(By.CSS_SELECTOR, '.job-card-description').text)
@@ -442,7 +479,7 @@ class JobScraper:
             time.sleep(5)
             
             jobs = driver.find_elements(By.CSS_SELECTOR, '.job-listings .react-job-listing')
-            for job in jobs:
+            for job in jobs[0:31]:
                 title = self.clean_text(job.find_element(By.CSS_SELECTOR, '.jobTitle').text)
                 company = self.clean_text(job.find_element(By.CSS_SELECTOR, '.jobCompany').text)
                 description = self.clean_text(job.find_element(By.CSS_SELECTOR, '.jobDescriptionContent').text)
@@ -486,7 +523,7 @@ class JobScraper:
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             jobs = soup.find_all('div', class_='job-tile')
             
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     title_elem = job.find('h3', class_='job-tile-title')
                     description_elem = job.find('div', class_='job-description')
@@ -533,7 +570,7 @@ class JobScraper:
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             internships = soup.find_all('div', class_='job-tile')
             
-            for internship in internships:
+            for internship in internships[0:31]:
                 try:
                     title_elem = internship.find('h3', class_='job-tile-title')
                     description_elem = internship.find('div', class_='job-description')
@@ -580,7 +617,7 @@ class JobScraper:
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             jobs = soup.find_all('div', class_='JobSearchCard-item')
             
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     title_elem = job.find('a', class_='JobSearchCard-primary-heading-link')
                     description_elem = job.find('p', class_='JobSearchCard-primary-description')
@@ -679,7 +716,7 @@ class JobScraper:
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             jobs = soup.find_all('a', class_='job_listing-clickbox')
             
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     title_elem = job.find('h3', class_='job_listing-title')
                     description_elem = job.find('span', class_='job_listing-company-tagline')
@@ -777,7 +814,7 @@ class JobScraper:
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             jobs = soup.find_all('span', class_='listing-company-name')
             
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     title_elem = job.find('span', class_='listing-company-name')
                     """ description_elem = job.find('span', class_='listing-company-name') """
@@ -834,7 +871,7 @@ class JobScraper:
             jobs = soup.find_all('a', class_='preventLink')
             print(f"Found {len(jobs)} job elements")
             
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     title_elem = job.find('h2')
                     if title_elem:
@@ -966,7 +1003,7 @@ class JobScraper:
         
             print(f"Processing {len(jobs)} job elements")
         
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     # Find the job title - try multiple selectors
                     title = None
@@ -1095,7 +1132,7 @@ class JobScraper:
                         if title_elem.get('href'):
                             # Get the full URL from the href
                             relative_url = title_elem['href'] """
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     title_elem = job.find('span')
                     if title_elem:
@@ -1172,7 +1209,7 @@ class JobScraper:
             jobs = soup.find_all('h4', class_='new-listing__header__title')
             print(f"Found {len(jobs)} job elements")
             
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     title_elem = job.find('h4', class_='new-listing__header__title')
                     if title_elem:
@@ -1241,7 +1278,7 @@ class JobScraper:
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             jobs = soup.find_all('div', class_='gig-card')
             
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     title_elem = job.find('h3', class_='gig-title')
                     description_elem = job.find('div', class_='gig-description')
@@ -1288,7 +1325,7 @@ class JobScraper:
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             jobs = soup.find_all('div', class_='gig-card')
             
-            for job in jobs:
+            for job in jobs[0:31]:
                 try:
                     title_elem = job.find('h3', class_='gig-title')
                     description_elem = job.find('div', class_='gig-description')
@@ -1329,7 +1366,7 @@ class JobScraper:
                 response = requests.get(self.sites['internships'])
                 soup = BeautifulSoup(response.text, 'html.parser')
                 internships = soup.find_all('div', class_='internship')
-                for internship in internships:
+                for internship in internships[0:31]:
                     try:
                         title = self.clean_text(internship.find('h3').text if internship.find('h3') else '')
                         company = self.clean_text(internship.find('h4').text if internship.find('h4') else '')
@@ -1396,7 +1433,7 @@ class JobScraper:
                 if not internships:
                     internships = soup.find_all('div', class_='internship_detail')
                 
-                for internship in internships:
+                for internship in internships[0:31]:
                     try:
                         # Try different selectors for title
                         title_elem = internship.find('div', class_='heading_4_5')
@@ -1496,7 +1533,7 @@ class JobScraper:
                     internships = soup.find_all('a', class_='preventLink')
                     print(f"Found {len(internships)} internship elements")
             
-                for internship in internships:
+                for internship in internships[0:31]:
                     try:
                         title_elem = internship.find('h2')
                         if title_elem:
@@ -1666,7 +1703,7 @@ class JobScraper:
                     internships = soup.find_all('a', class_='blank-link')
                     print(f"Found {len(internships)} internship elements")
             
-                for internship in internships:
+                for internship in internships[0:31]:
                     try:
                         title_elem = internship.find('h4', class_='truncate-normal')
                         if title_elem:
@@ -1736,7 +1773,7 @@ class JobScraper:
                 if not internships:
                     internships = soup.find_all('div', class_='internship_detail')
                 
-                for internship in internships:
+                for internship in internships[0:31]:
                     try:
                         # Try different selectors for title
                         title_elem = internship.find('div', class_='heading_4_5')
@@ -1810,7 +1847,7 @@ class JobScraper:
                 response = requests.get(self.sites['g2i'])
                 soup = BeautifulSoup(response.text, 'html.parser')
                 internships = soup.find_all('div', class_='job-card')
-                for internship in internships:
+                for internship in internships[0:31]:
                     try:
                         title = self.clean_text(internship.find('h2').text if internship.find('h2') else '')
                         company = self.clean_text(internship.find('h3').text if internship.find('h3') else '')
@@ -1837,7 +1874,7 @@ class JobScraper:
                 response = requests.get(self.sites['frontendinterns'])
                 soup = BeautifulSoup(response.text, 'html.parser')
                 internships = soup.find_all('div', class_='job-listing')
-                for internship in internships:
+                for internship in internships[0:31]:
                     try:
                         title = self.clean_text(internship.find('h2').text if internship.find('h2') else '')
                         company = self.clean_text(internship.find('h3').text if internship.find('h3') else '')
@@ -1874,6 +1911,7 @@ class JobScraper:
             self.scrape_internships()
             
             # Scrape from other sources
+            #self.fetch_jobs()
             self.scrape_upwork()
             self.scrape_upwork_intern()
             self.scrape_freelancer()
@@ -1885,6 +1923,7 @@ class JobScraper:
             self.scrape_remotive()
             self.scrape_weworkremotely()
             self.scrape_wayup()
+
             
             # Save to Excel
             if self.data:
