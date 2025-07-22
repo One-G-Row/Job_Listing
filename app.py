@@ -8,10 +8,13 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import datetime
 from tkinter import Button
+import threading
+from flask import jsonify
 
 
 app = Flask(__name__)
 scraper = JobScraper()  # Initialize the scraper instance
+scraping_status = {"running": False, "last_run": None}
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
@@ -205,8 +208,35 @@ def index():
                          error=None if all_jobs else 'No job listings found. Please run the scraper first or check your API configuration.')
 
 
-@app.route('/scrape')
-def scrape():
+@app.route('/scrape', methods=['POST'])
+def start_scrape():
+    if scraping_status["running"]:
+        return jsonify({"error": "Scraping already in progress"}), 400
+    
+    # Start scraping in background thread
+    thread = threading.Thread(target=run_scraper)
+    thread.daemon = True
+    thread.start()
+    
+    return jsonify({"message": "Scraping started"}), 202
+
+def run_scraper():
+    scraping_status["running"] = True
+    try:
+        result = subprocess.run(['python', 'job_scraper.py'],
+                              capture_output=True, text=True, timeout=300)
+        # Store result in database or file
+        scraping_status["last_run"] = "success" if result.returncode == 0 else "failed"
+    except Exception as e:
+        scraping_status["last_run"] = f"error: {str(e)}"
+    finally:
+        scraping_status["running"] = False
+
+@app.route('/scrape/status')
+def scrape_status():
+    return jsonify(scraping_status)
+    
+""" def scrape():
     try:
         # Run job scraper
         result = subprocess.run(['python', 'job_scraper.py'], 
@@ -222,7 +252,7 @@ def scrape():
     except Exception as e:
         flash(f'Error: {str(e)}', 'error')
     
-    return redirect(url_for('index'))
+    return redirect(url_for('index')) """
     
 
 @app.route('/internships')
