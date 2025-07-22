@@ -208,7 +208,7 @@ def index():
                          error=None if all_jobs else 'No job listings found. Please run the scraper first or check your API configuration.')
 
 
-@app.route('/scrape', methods=['POST'])
+@app.route('/scrape', methods=['GET', 'POST'])
 def start_scrape():
     if scraping_status["running"]:
         return jsonify({"error": "Scraping already in progress"}), 400
