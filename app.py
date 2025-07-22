@@ -208,9 +208,57 @@ def index():
                          error=None if all_jobs else 'No job listings found. Please run the scraper first or check your API configuration.')
 
 
-@app.route('/scrape', methods=['GET', 'POST'])
+@app.route('/scrape')
 def start_scrape():
-    if scraping_status["running"]:
+    try:
+        # Check if already running (simple file-based check)
+        if os.path.exists('scraping.lock'):
+            flash('Scraping already in progress', 'info')
+            return redirect(url_for('index'))
+        
+        # Create lock file
+        with open('scraping.lock', 'w') as f:
+            f.write('running')
+        
+        # Run in background thread
+        thread = threading.Thread(target=background_scraper)
+        thread.daemon = True
+        thread.start()
+        
+        flash('Job scraping started in background!', 'success')
+        
+    except Exception as e:
+        flash(f'Error starting scraper: {str(e)}', 'error')
+        # Remove lock file if error
+        if os.path.exists('scraping.lock'):
+            os.remove('scraping.lock')
+    
+    return redirect(url_for('index'))
+
+def background_scraper():
+    try:
+        result = subprocess.run(['python', 'job_scraper.py'],
+                              capture_output=True, text=True, timeout=300)
+        
+        # Log result (since we can't flash from background thread)
+        with open('scrape_log.txt', 'w') as f:
+            if result.returncode == 0:
+                f.write('success')
+            else:
+                f.write(f'failed: {result.stderr}')
+                
+    except subprocess.TimeoutExpired:
+        with open('scrape_log.txt', 'w') as f:
+            f.write('timeout')
+    except Exception as e:
+        with open('scrape_log.txt', 'w') as f:
+            f.write(f'error: {str(e)}')
+    finally:
+        # Remove lock file
+        if os.path.exists('scraping.lock'):
+            os.remove('scraping.lock')
+
+"""     if scraping_status["running"]:
         return jsonify({"error": "Scraping already in progress"}), 400
     
     # Start scraping in background thread
@@ -234,7 +282,7 @@ def run_scraper():
 
 @app.route('/scrape/status')
 def scrape_status():
-    return jsonify(scraping_status)
+    return jsonify(scraping_status) """
     
 """ def scrape():
     try:
