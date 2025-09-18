@@ -1,0 +1,47 @@
+# Virtual environments
+venv/
+env/
+.env
+.venv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+job_listings.xlsx
+internships.xlsx
+scrape_log.txt
+scraping.lock
+combined_jobs.xlsx
+
+# Environment variables
+.env
